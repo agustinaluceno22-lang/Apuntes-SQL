@@ -1,0 +1,125 @@
+Combinación de consultas (UNION)
+¿Qué es UNION? UNION permite combinar los resultados de dos o más consultas SELECT en un único conjunto de resultados.
+Cada consulta se ejecuta por separado y luego SQL une los resultados.
+
+Sintaxis:
+
+SELECT columna1, columna2
+FROM tabla1
+
+UNION
+
+SELECT columna1, columna2
+FROM tabla2;
+
+Requisitos para usar UNION
+
+Las consultas deben cumplir estas condiciones:
+Tener la misma cantidad de columnas.
+Las columnas deben estar en el mismo orden.
+Los tipos de datos deben ser compatibles.
+
+Ejemplo correcto:
+
+SELECT Nombre, Ciudad
+FROM Clientes
+
+UNION
+
+SELECT Nombre, Ciudad
+FROM Proveedores;
+
+Diferencia entre UNION y UNION ALL
+UNION
+Elimina registros duplicados.
+Devuelve únicamente valores únicos.
+
+Ejemplo:
+
+SELECT Ciudad
+FROM Clientes
+
+UNION
+
+SELECT Ciudad
+FROM Proveedores;
+
+Resultado:
+
+Buenos Aires
+Córdoba
+Rosario
+Mendoza
+
+UNION ALL
+Mantiene los registros duplicados.
+Es más rápido porque no compara los resultados.
+SELECT Ciudad
+FROM Clientes
+
+UNION ALL
+
+SELECT Ciudad
+FROM Proveedores;
+
+Resultado:
+
+Buenos Aires
+Buenos Aires
+Rosario
+Rosario
+Córdoba
+
+Uso de NULL en UNION
+Cuando las tablas tienen estructuras diferentes, puede utilizarse NULL para completar las columnas faltantes.
+
+Ejemplo:
+
+Tabla Empleados
+
+ID
+Nombre
+Apellido
+DepartamentoID
+
+Tabla Departamentos
+
+DepartamentoID
+NombreDepartamento
+
+Consulta:
+SELECT
+    ID,
+    Nombre,
+    Apellido,
+    DepartamentoID,
+    NULL AS NombreDepartamento
+FROM Empleados
+
+UNION
+
+SELECT
+    NULL AS ID,
+    NULL AS Nombre,
+    NULL AS Apellido,
+    DepartamentoID,
+    NombreDepartamento
+FROM Departamentos;
+
+De esta manera ambas consultas tienen la misma cantidad de columnas y pueden combinarse.
+
+Lo más importante para recordar
+✅ UNION une resultados de varios SELECT.
+
+✅ UNION elimina duplicados.
+
+✅ UNION ALL conserva duplicados.
+
+✅ Ambos SELECT deben tener la misma estructura.
+
+✅ Se puede usar NULL AS NombreColumna para completar columnas faltantes cuando las tablas tienen estructuras diferentes.
+
+Este tema es muy importante porque suele aparecer junto con JOIN, ya que ambos combinan información, pero de maneras distintas:
+
+JOIN → combina columnas de tablas relacionadas.
+UNION → combina filas de diferentes consultas.
