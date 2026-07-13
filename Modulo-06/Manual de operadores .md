@@ -10,6 +10,8 @@ Tipos de operadores
 
 1. Operadores aritméticos
 Se utilizan para realizar operaciones matemáticas.
+
+
 | Operador | Significado                    |
 | -------- | ------------------------------ |
 | +        | Suma                           |
